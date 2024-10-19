@@ -3,48 +3,48 @@
 #include <time.h>
 
 
-void inicializar_matriz(int **matriz, int n) {
+void initialise_matrix(int **matrix, int n) {
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
-            matriz[i][j] = rand() % 10; 
+            matrix[i][j] = rand() % 10; 
         }
     }
 }
 
 
-void imprimir_matriz(int **matriz, int n) {
+void print_matrix(int **matrix, int n) {
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
-            printf("%d ", matriz[i][j]);
+            printf("%d ", matrix[i][j]);
         }
         printf("\n");
     }
 }
 
 
-void multiplicar_matrices(int **A, int **B, int **resultado, int n) {
+void multiply_matrix(int **A, int **B, int **result, int n) {
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
-            resultado[i][j] = 0; 
+            result[i][j] = 0; 
             for (int k = 0; k < n; k++) {
-                resultado[i][j] += A[i][k] * B[k][j];
+                result[i][j] += A[i][k] * B[k][j];
             }
         }
     }
 }
 
 
-void liberar_matriz(int **matriz, int n) {
+void free_matrix(int **matrix, int n) {
     for (int i = 0; i < n; i++) {
-        free(matriz[i]);
+        free(matrix[i]);
     }
-    free(matriz);
+    free(matrix);
 }
 
 // Principal function
 int main(int argc, char *argv[]) {
     if (argc != 2) {
-        printf("Uso: %s <tamaño de la matriz>\n", argv[0]);
+        printf("Uso: %s <tamaño de la matrix>\n", argv[0]);
         return 1;
     }
 
@@ -53,35 +53,35 @@ int main(int argc, char *argv[]) {
     
     int **A = (int **)malloc(n * sizeof(int *));
     int **B = (int **)malloc(n * sizeof(int *));
-    int **resultado = (int **)malloc(n * sizeof(int *));
+    int **result = (int **)malloc(n * sizeof(int *));
     for (int i = 0; i < n; i++) {
         A[i] = (int *)malloc(n * sizeof(int));
         B[i] = (int *)malloc(n * sizeof(int));
-        resultado[i] = (int *)malloc(n * sizeof(int));
+        result[i] = (int *)malloc(n * sizeof(int));
     }
 
     srand(time(NULL)); 
 
-    inicializar_matriz(A, n); 
-    inicializar_matriz(B, n); 
+    initialise_matrix(A, n); 
+    initialise_matrix(B, n); 
 
-    printf("Matriz A:\n");
-    imprimir_matriz(A, n); 
+    printf("matrix A:\n");
+    print_matrix(A, n); 
 
-    printf("\nMatriz B:\n");
-    imprimir_matriz(B, n); 
+    printf("\nmatrix B:\n");
+    print_matrix(B, n); 
 
     printf("\nMultiplicando matrices de tamaño %dx%d...\n", n, n);
 
-    multiplicar_matrices(A, B, resultado, n);
+    multiply_matrix(A, B, result, n);
 
-    printf("\nMatriz Resultado:\n");
-    imprimir_matriz(resultado, n); 
+    printf("\nmatrix result:\n");
+    print_matrix(result, n); 
 
     
-    liberar_matriz(A, n);
-    liberar_matriz(B, n);
-    liberar_matriz(resultado, n);
+    free_matrix(A, n);
+    free_matrix(B, n);
+    free_matrix(result, n);
 
     return 0;
 }
