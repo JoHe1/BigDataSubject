@@ -33,20 +33,12 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <!-- Deshabilita el POM reducido -->
                             <createDependencyReducedPom>false</createDependencyReducedPom>
-                            <artifactSet>
-                                <excludes>
-                                    <!-- Excluye dependencias innecesarias si lo deseas -->
-                                </excludes>
-                            </artifactSet>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <!-- Especifica la clase principal con el método `main` -->
                                     <mainClass>ulpgc.software.DistributedMatrixMultiplication</mainClass>
                                 </transformer>
                             </transformers>
-                            <!-- Genera un JAR con un nombre específico (opcional) -->
                             <finalName>Individual_Task_4-1.0-fat</finalName>
                         </configuration>
                     </execution>
