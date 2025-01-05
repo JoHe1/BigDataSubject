@@ -92,7 +92,7 @@ The results of the matrix multiplication are displayed on the orchestrator node 
 4. Start the Hazelcast cluster using Docker Compose:
    ```bash
    docker-compose build
-    docker-compose up
+   docker-compose up
     ```
 5. Open Docker Desktop to view the running containers.
 
