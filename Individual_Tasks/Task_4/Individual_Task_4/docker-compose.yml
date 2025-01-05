@@ -1,0 +1,28 @@
+version: "3.8"
+services:
+  java-app:
+    build:
+      context: .
+    container_name: java-app
+    image: java-app:latest
+    depends_on:
+      - hazelcast-node1
+      - hazelcast-node2
+    networks:
+      - hazelcast-network
+
+  hazelcast-node1:
+    image: java-app:latest
+    container_name: hazelcast-node1
+    networks:
+      - hazelcast-network
+
+  hazelcast-node2:
+    image: java-app:latest
+    container_name: hazelcast-node2
+    networks:
+      - hazelcast-network
+
+networks:
+  hazelcast-network:
+    driver: bridge
